@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
-from pybasic.models import Comment, Questions
+from pybasic.layer import filter_comments_by_user_id, filter_questions_user_id, get_user_in_detail
 
 
 def register(request):
@@ -25,8 +24,8 @@ def info(request, user_id):
     """
     view function to display user information, comments and questions by user
     """
-    user = User.objects.get(id=user_id)
-    comments = Comment.objects.filter(user_id=user_id)
-    questions = Questions.objects.filter(user_id=user_id)
+    user = get_user_in_detail(user_id=user_id)
+    comments = filter_comments_by_user_id(user_id=user_id)
+    questions = filter_questions_user_id(user_id=user_id)
     context = {'user': user, 'comments': comments, 'questions': questions}
     return render(request, 'users/info.html', context)

@@ -22,7 +22,7 @@
     {% extends 'pybasic/base.html' %}
     {% block content %}
     <ul>
-        {% for topic in topics %}
+        {% for topic in topics_ %}
         <li>
             <div class="topics"><a href="{% url 'pybasic:topic-detail' user.id topic.id %}">{{topic}}</a>
             </div>

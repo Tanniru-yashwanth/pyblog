@@ -60,14 +60,35 @@
     <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
         {% csrf_token %}
         <div class="f">{{form.as_p}}</div>
-        <button name="submit">submit</button>
+        <button type="submit" name="comment">submit</button>
     </form>
+    <div class="c">
+        <p>Your Comments:</p>
+        <ul>
+            {% for comment in comments %}
+            <li>{{comment}}</li>
+            {% empty %}
+            <li>There are no comments yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <p>
     <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
         {% csrf_token %}
         {{form_1.as_p}}
-        <button name="submit">submit</button>
+        <button type="submit" name="question">submit</button>
         </p>
+        <div class="q">
+            <p>Your Questions:</p>
+            <ul>
+                {% for question in questions %}
+                <li>{{question}}</li>
+                {% empty %}
+                <li>There are no questions yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endblock content%}
 </body>
 
