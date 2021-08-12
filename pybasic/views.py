@@ -4,6 +4,7 @@ from .forms import QuestionForm, CommentFormDisplay
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .layer import get_topics, topic_in_detail, get_user, get_entries
 
 
 def index(request):
@@ -17,8 +18,7 @@ def topics(request):
     """
     function to return topics page
     """
-    topics = Topic.objects.order_by("created")
-    context = {"topics": topics}
+    context = get_topics()
     return render(request, "pybasic/topics.html", context)
 
 
@@ -26,9 +26,9 @@ def topic_detail(request, user_id, topic_id):
     """
     function to return each topic in detail and provides comment forms and ask forms
     """
-    topic = Topic.objects.get(id=topic_id)
-    user = User.objects.get(id=user_id)
-    entries = topic.entry_set.order_by("-created")
+    topic = topic_in_detail(topic_id)
+    user = get_user(user_id)
+    entries = get_entries(topic_id)
     if request.method != "POST":
         form = CommentFormDisplay()
         form_1 = QuestionForm()
