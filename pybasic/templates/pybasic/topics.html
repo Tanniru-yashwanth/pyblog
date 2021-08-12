@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .topics {
+            background-color: rgb(180, 161, 161);
+            border-bottom: 20px;
+            border-radius: 5px;
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    <ul>
+        {% for topic in topics %}
+        <li>
+            <div class="topics"><a href="{% url 'pybasic:topic-detail' user.id topic.id %}">{{topic}}</a>
+            </div>
+        </li>
+
+        {% endfor %}
+    </ul>
+    {% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .details {
+            background-color: rgb(150, 182, 184);
+            width: 400px;
+            height: 150px;
+            padding-top: 10px;
+            border: lightskyblue;
+            border-radius: 5px;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        .comment {
+            background-color: aliceblue;
+            opacity: 60%;
+            border-radius: 10px;
+            padding: 8px;
+            width: 383px;
+            font-size: medium;
+        }
+
+        .question {
+            background-color: aliceblue;
+            opacity: 60%;
+            border-radius: 10px;
+            padding: 8px;
+            width: 383px;
+        }
+    </style>
+
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    <div class="details">
+        <ul>
+            <p>
+
+                <li>Name - {{user.username}}</li>
+                <li>Email - {{user.email}}</li>
+                <li>Joined - {{user.date_joined}}</li>
+                <li>Last Login - {{user.last_login}}</li>
+            </p>
+        </ul>
+        <div class="comment">
+            <p>Your Comments:
+            <ul>
+                {% for comment in comments %}
+                <li>
+                    <p>{{comment.topic}}</p>
+                    <p>{{comment}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="question">
+            <p>Your Questions:</p>
+            <ul>
+                {% for question in questions %}
+                <li>{{question}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        </p>
+    </div>
+    {% endblock content%}
+</body>
+
+</html>

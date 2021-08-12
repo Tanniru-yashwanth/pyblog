@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>pyblog</title>
+    <style>
+        .head {
+            font-size: 30px;
+            margin: auto;
+            height: 100px;
+            width: 300px;
+        }
+
+        .intro {
+            height: 200px;
+            width: 1200px;
+            background-color: darkgray;
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            margin: auto;
+            border: mintcream;
+            background-origin: padding-box;
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    {% extends "pybasic/base.html" %}
+    {% block content %}
+    <div class="head">
+        <p>Welcome to pyblog</p>
+    </div>
+    <div class="intro">
+        <p>This is a place where u will find concepts of python which helps you to build knowledge on python
+            programming.
+            and you can post your explanation about the topics which can help the other people.
+            You can also share your doubts here which can be clarified by other developers.
+            This will also help developers for the quick revision.
+        </p>
+    </div>
+    {% endblock content %}
+</body>
+
+</html>

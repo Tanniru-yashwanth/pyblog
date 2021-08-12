@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .options {
+            background-color: lightgray;
+            width: 10%;
+            font-size: 18px;
+            font-weight: 200px;
+            border-radius: 5px;
+            height: 25px;
+            padding-left: 10px;
+            padding-top: 10px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding-bottom: 10px;
+
+        }
+
+        .topic {
+            background-color: rgb(150, 182, 184);
+            height: 500px;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%
+        }
+
+        button {
+            background-color: lightpink;
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message}}</li>
+        {% endfor %}
+
+    </ul>
+    {% endif %}
+    <p>{{topic}}</p>
+    <ul>
+        {% for entry in entries %}
+        <li>
+            <div class="topic">{{entry}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
+        {% csrf_token %}
+        <div class="f">{{form.as_p}}</div>
+        <button name="submit">submit</button>
+    </form>
+    <p>
+    <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
+        {% csrf_token %}
+        {{form_1.as_p}}
+        <button name="submit">submit</button>
+        </p>
+        {% endblock content%}
+</body>
+
+</html>

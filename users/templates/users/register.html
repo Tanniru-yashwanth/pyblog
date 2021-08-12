@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .reg {
+            background-color: rgb(150, 135, 135);
+            margin: auto;
+            padding-left: 20px;
+            width: 500px;
+            padding: 25px;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    <div class="reg">
+        <form action="{% url 'users:register'%}" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button name="submit">register</button>
+            <input type="hidden" name="next" value="{% url 'pybasic:index' %}">
+        </form>
+    </div>
+    {% endblock content %}
+</body>
+
+</html>

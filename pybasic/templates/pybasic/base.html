@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyblog</title>
+    <style>
+        .links {
+            font-family: sans-serif;
+            width: 70px;
+            height: 25px;
+            background-color: darkgray;
+            padding-left: 15px;
+            padding-top: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-style: groove;
+
+        }
+
+        .name {
+            padding-left: 90%;
+            width: auto;
+            height: auto;
+            background-color: rgb(150, 135, 135);
+            border-radius: 5px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+
+        }
+
+        .topics_base {
+            font-family: sans-serif;
+            width: 70px;
+            height: 25px;
+            background-color: darkgray;
+            padding-left: 15px;
+            padding-top: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-style: groove;
+        }
+
+        .logout {
+            font-family: sans-serif;
+            width: 70px;
+            height: 25px;
+            background-color: darkgray;
+            padding-left: 15px;
+            padding-top: 10px;
+            border-radius: 10px;
+            margin-bottom: 0px;
+            margin-right: 0px;
+            margin-top: 4px;
+            display: inline-block;
+            vertical-align: top;
+            border-style: groove;
+
+        }
+
+        body {
+            background-color: lightslategray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="links"><a href="{% url 'pybasic:index' %}">Home</a></div>
+    {% if user.is_authenticated %}
+    <p>
+    <div class="name"> Hello, {{user.username}}</div>
+    <div class="name"><a href="{% url 'users:info' user.id %}">Your Account</a></div>
+
+
+    <div class="topics_base"><a href="{% url 'pybasic:topics'%}">Topics</a></div>
+
+    <div class="logout"><a href="{% url 'users:logout' %}">logout</a></div>
+    {% else %}
+    <div class="links"><a href="{% url 'users:register'%}">register</a></div>
+    <div class="links"><a href="{% url 'users:login' %}">login</a></div>
+
+
+    </p>
+    {% endif%}
+
+    {% block content%}
+    {%endblock content%}
+
+</body>
+
+</html>

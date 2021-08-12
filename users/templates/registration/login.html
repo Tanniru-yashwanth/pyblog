@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form {
+            height: 250px;
+            width: 250px;
+            margin: auto;
+            font-size: 25px;
+            background-color: rgb(150, 135, 135);
+            padding: 8px;
+            border-radius: 5px;
+            padding-left: 50px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    {% if form.errors %}
+    <p>Your username and password doesnt match. Please try again.</p>
+    {% endif %}
+    <div class="form">
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button name="submit">Log in</button>
+            <input type="hidden" name="next" value="{% url 'pybasic:index' %}">
+        </form>
+    </div>
+    {% endblock content %}
+</body>
+
+</html>
