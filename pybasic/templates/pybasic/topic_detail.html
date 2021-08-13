@@ -49,13 +49,15 @@
     </ul>
     {% endif %}
     <p>{{topic}}</p>
-    <ul>
-        {% for entry in entries %}
-        <li>
-            <div class="topic">{{entry}}</div>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="topic">
+        <ul>
+            {% for entry in entries %}
+            <li>
+                {{entry}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
         {% csrf_token %}

@@ -15,6 +15,11 @@
             padding: 10px;
             margin-top: 5px;
         }
+
+        .tag {
+            float: left;
+            margin: 10px;
+        }
     </style>
 </head>
 
@@ -29,7 +34,11 @@
         </li>
 
         {% endfor %}
+
     </ul>
+    {% for tag in tags %}
+    <div class="tag"><a href="{% url 'pybasic:tag-topics' tag.id %}">#{{tag}}</a></div>
+    {% endfor %}
     {% endblock content %}
 </body>
 

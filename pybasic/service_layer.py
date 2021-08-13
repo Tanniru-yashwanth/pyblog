@@ -1,10 +1,10 @@
-from .models import Topic, Entry, Comment, Questions
+from .models import Topic, Entry, Comment, Questions, Tags
 from django.contrib.auth.models import User
 
 
 def get_user_in_detail(user_id):
     """
-    function to get user in detail
+    Function to get user in detail.
     """
     user = User.objects.get(id=user_id)
     return user
@@ -12,7 +12,7 @@ def get_user_in_detail(user_id):
 
 def get_all_topics():
     """
-    function to get all topics
+    Function to get all topics.
     """
     topics = Topic.objects.all()
     return topics
@@ -20,7 +20,7 @@ def get_all_topics():
 
 def order_topics_by(field="created"):
     """
-    function to get all topics in order by date
+    Function to get all topics in order by date.
     """
     topics = get_all_topics()
     return topics.order_by(field)
@@ -28,7 +28,7 @@ def order_topics_by(field="created"):
 
 def topic_in_detail(topic_id):
     """
-    function to get single topic in detail
+    Function to get single topic in detail.
     """
     topic = Topic.objects.get(id=topic_id)
     return topic
@@ -36,7 +36,7 @@ def topic_in_detail(topic_id):
 
 def get_all_entries():
     """
-    function to get all entries
+    Function to get all entries.
     """
     entries = Entry.objects.all()
     return entries
@@ -44,7 +44,7 @@ def get_all_entries():
 
 def filter_entries_by_topic(topic_id):
     """
-    function to get filtered entries by topic
+    Function to get filtered entries by topic.
     """
     entries = Entry.objects.filter(topic_id=topic_id)
     return entries
@@ -52,7 +52,7 @@ def filter_entries_by_topic(topic_id):
 
 def get_all_comments():
     """
-    function to get all comments
+    Function to get all comments.
     """
     comments = Comment.objects.all()
     return comments
@@ -60,14 +60,14 @@ def get_all_comments():
 
 def filter_comments_by_user_id(user_id):
     """
-    function to get filtered comments by user field
+    Function to get filtered comments by user field.
     """
     comments = Comment.objects.filter(user_id=user_id)
 
 
-def filter_comments_by_user_id_and_topic_id(user_id, topic_id):
+def filter_comments_by_user_topic(user_id, topic_id):
     """
-    function to get filtered comments by user and topic fields
+    Function to get filtered comments by user and topic fields.
     """
     comments = Comment.objects.filter(user_id=user_id, topic_id=topic_id)
     return comments
@@ -75,7 +75,7 @@ def filter_comments_by_user_id_and_topic_id(user_id, topic_id):
 
 def get_all_questions():
     """
-    function to get all questions
+    Function to get all questions.
     """
     questions = Questions.objects.all()
     return questions
@@ -83,14 +83,38 @@ def get_all_questions():
 
 def filter_questions_user_id(user_id):
     """
-    function to get filtered questions by user field
+    Function to get filtered questions by user field.
     """
     questions = Questions.objects.filter(user_id=user_id)
 
 
-def filter_questions_by_topic_id_and_user_id(user_id, topic_id):
+def filter_questions_by_topic_user(user_id, topic_id):
     """
-    function to get filtered questions by user and topic field
+    Function to get filtered questions by user and topic field.
     """
     questions = Questions.objects.filter(user_id=user_id, topic_id=topic_id)
     return questions
+
+
+def get_all_tags():
+    """
+    Function to get all tags .
+    """
+    tags = Tags.objects.all()
+    return tags
+
+
+def filter_tags_topic(topic_id):
+    """
+    Function to get tags related to particular topic.
+    """
+    tags = Tags.objects.filter(topic_id=topic_id)
+    return tags
+
+
+def get_topics_by_tag(topic_id):
+    """
+    Function to get topics related to specific tag
+    """
+    topics = Tags.topic_set.all()
+    return topics

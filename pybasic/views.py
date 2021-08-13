@@ -2,45 +2,44 @@ from django.shortcuts import render, redirect
 from .forms import QuestionForm, CommentFormDisplay
 from django.http import HttpResponse
 from django.contrib import messages
-from .layer import (
+from .service_layer import (
     get_all_topics,
     topic_in_detail,
     get_user_in_detail,
-    get_all_entries,
-    get_all_comments,
-    get_all_questions,
     filter_entries_by_topic,
-    filter_comments_by_user_id_and_topic_id,
-    filter_questions_by_topic_id_and_user_id,
-    order_topics_by
+    filter_comments_by_user_topic,
+    filter_questions_by_topic_user,
+    get_all_tags,
+    get_topics_by_tag
 )
 
 
 def index(request):
     """
-    function to return index page for the request
+    Function to return index page for the request.
     """
     return render(request, "pybasic/index.html")
 
 
 def topics(request):
     """
-    function to return topics page
+    Function to return topics page.
     """
     topics_ = get_all_topics()
-    context = {'topics_': topics_}
+    tags = get_all_tags()
+    context = {'topics_': topics_, 'tags': tags}
     return render(request, "pybasic/topics.html", context)
 
 
 def topic_detail(request, user_id, topic_id):
     """
-    function to return each topic in detail and provides comment forms and ask forms
+    Function to return each topic in detail and provides comment form and ask form.
     """
     topic = topic_in_detail(topic_id)
     user = get_user_in_detail(user_id)
     entries = filter_entries_by_topic(topic_id)
-    comments = filter_comments_by_user_id_and_topic_id(user_id, topic_id)
-    questions = filter_questions_by_topic_id_and_user_id(user_id, topic_id)
+    comments = filter_comments_by_user_topic(user_id, topic_id)
+    questions = filter_questions_by_topic_user(user_id, topic_id)
     if request.method != "POST":
         form = CommentFormDisplay()
         form_1 = QuestionForm()
@@ -78,3 +77,9 @@ def topic_detail(request, user_id, topic_id):
         "questions": questions,
     }
     return render(request, "pybasic/topic_detail.html", context)
+
+
+def tag_topics(request, topic_id):
+    tags = get_topics_by_tag(topic_id=topic_id)
+    context = {'tags': tags}
+    return render(request, "pybasic/tag_topics.html", context)

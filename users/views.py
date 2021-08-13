@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
-from pybasic.layer import filter_comments_by_user_id, filter_questions_user_id, get_user_in_detail
+from pybasic.service_layer import filter_comments_by_user_id, filter_questions_user_id, get_user_in_detail
 
 
 def register(request):
