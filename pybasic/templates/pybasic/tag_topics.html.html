@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% extends 'pybasic/base.html' %}
+    {% block content %}
+    <ul>
+        {% for topic in topics %}
+        <li>{{topic}}</li>
+        {% empty %}
+        <li>There are no topics matching this tag.</li>
+        {% endfor %}
+    </ul>
+    {% endblock content%}
+</body>
+
+</html>
