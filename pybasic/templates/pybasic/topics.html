@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width={device-width}, initial-scale=1.0">
-    <title>Document</title>
+    <title>Topics</title>
     <style>
         .topics {
             background-color: rgb(180, 161, 161);
@@ -36,9 +36,6 @@
         {% endfor %}
 
     </ul>
-    {% for tag in tags %}
-    <div class="tag"><a href="{% url 'pybasic:tag-topics' tag.id %}">#{{tag}}</a></div>
-    {% endfor %}
     {% endblock content %}
 </body>
 

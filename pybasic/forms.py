@@ -4,19 +4,22 @@ from .models import Comment, Questions
 
 class CommentFormDisplay(forms.ModelForm):
     """
-    Class for Comment form
+    Class to create comment form to give the facility of commenting about the topic.
+
     """
+
     class Meta:
         model = Comment
-        label = {"comment": ''}
-        fields = ["comment"]
+        label = {"comment": ""}
+        fields = ["comment", 'profession', 'json_field']
 
 
 class QuestionForm(forms.ModelForm):
     """
-    class for question form
+    class to create question form to give the facility of asking questions about the topic.
     """
+
     class Meta:
         model = Questions
-        label = {'ask': ''}
-        fields = ['question']
+        label = {"ask": ""}
+        fields = ["question", 'profession', 'json_field']

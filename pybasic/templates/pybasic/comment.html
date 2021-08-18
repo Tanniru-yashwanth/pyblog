@@ -15,6 +15,7 @@
     <form action="{% url 'pybasic:comment' topic.id %}" method="post">
         {% csrf_token %}
         {{form.as_p}}
+        <input name='comment' type="hidden">
         <button name="submit">Add Comment</button>
     </form>
     {% endblock content%}

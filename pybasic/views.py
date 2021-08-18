@@ -35,8 +35,8 @@ def topic_detail(request, user_id, topic_id):
     """
     Function to return each topic in detail and provides comment form and ask form.
     """
-    topic = topic_in_detail(topic_id)
     user = get_user_in_detail(user_id)
+    topic = topic_in_detail(topic_id)
     entries = filter_entries_by_topic(topic_id)
     comments = filter_comments_by_user_topic(user_id, topic_id)
     questions = filter_questions_by_topic_user(user_id, topic_id)
