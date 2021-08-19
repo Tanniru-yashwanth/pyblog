@@ -1,4 +1,4 @@
-from .models import Topic, Entry, Comment, Questions, Tags
+from .models import Topic, Entry, Comment, Questions, Tags, TagTopics
 from django.contrib.auth.models import User
 
 
@@ -104,17 +104,12 @@ def get_all_tags():
     return tags
 
 
-def filter_tags_topic(topic_id):
+def filter_topics_by_tag(tag_id):
     """
     Function to get tags related to particular topic.
     """
-    tags = Tags.objects.filter(topic_id=topic_id)
-    return tags
-
-
-def get_topics_by_tag(topic_id):
-    """
-    Function to get topics related to specific tag
-    """
-    topics = Tags.topic_set.all()
+    topics = TagTopics.objects.filter(tag_id=tag_id)
     return topics
+
+
+

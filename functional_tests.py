@@ -11,6 +11,7 @@ class HomePageTest(unittest.TestCase):
     """
     Class to write the unittests for the every particular function.
     """
+
     def setUp(self):
         """
         Setup method to set the browser on and to login into the application to check the remaining pages.
@@ -34,17 +35,23 @@ class HomePageTest(unittest.TestCase):
         self.browser.quit()
 
     def test_getting_index_page(self):
-        # to check the home page
+        """
+         To check whether the home page is working or not.
+         """
         self.browser.get("http://localhost:8000")
         # to check the pyblog in title
         self.assertIn("pyblog", self.browser.title)
 
     def test_topics_page(self):
-        # to check whether the topics page is working.
+        """
+        To check whether the topics page is working.
+        """
         self.browser.get("http://localhost:8000/topics/")
 
     def test_topic_detail_page(self):
-        # to check whether the topic detail page is working.
+        """
+        To check whether the topic detail page is working.
+        """
         self.browser.get('http://localhost:8000/topics/1/1/')
 
 

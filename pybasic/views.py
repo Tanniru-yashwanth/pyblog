@@ -10,7 +10,7 @@ from .service_layer import (
     filter_comments_by_user_topic,
     filter_questions_by_topic_user,
     get_all_tags,
-    get_topics_by_tag
+    filter_topics_by_tag,
 )
 
 
@@ -79,7 +79,7 @@ def topic_detail(request, user_id, topic_id):
     return render(request, "pybasic/topic_detail.html", context)
 
 
-def tag_topics(request, topic_id):
-    tags = get_topics_by_tag(topic_id=topic_id)
-    context = {'tags': tags}
+def tag_topics(request, tag_id):
+    topics_tag = filter_topics_by_tag(tag_id=tag_id)
+    context = {'topics_tag': topics_tag}
     return render(request, "pybasic/tag_topics.html", context)
