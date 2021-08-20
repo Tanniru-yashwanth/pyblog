@@ -6,7 +6,6 @@ class Tags(models.Model):
     """
     Class to provide tags to find topics easily.
     """
-
     tag = models.CharField(max_length=100)
 
     def __str__(self):
@@ -71,7 +70,7 @@ class Comment(models.Model):
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     profession = models.CharField(max_length=100, choices=profession)
-    json_field = models.JSONField()
+    json_field = models.JSONField(blank=True, null=True)
 
     def __str__(self):
         """
@@ -91,7 +90,7 @@ class Questions(models.Model):
     question = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     profession = models.CharField(max_length=100, choices=profession)
-    json_field = models.JSONField()
+    json_field = models.JSONField(blank=True, null=True)
 
     def __str__(self):
         """

@@ -17,6 +17,7 @@
             border-radius: 10px;
             margin-bottom: 10px;
             border-style: groove;
+            margin-top: 6px;
 
         }
 
@@ -61,7 +62,7 @@
         }
 
         body {
-            background-color: lightslategray;
+            background-color: rgb(78, 100, 122);
         }
     </style>
 </head>
@@ -72,13 +73,14 @@
     {% if user.is_authenticated %}
     <p>
     <div class="name"> Hello, {{user.username}}</div>
-    <div class="name"><a href="{% url 'users:info' user.id %}">Your Account</a></div>
+    <div class="name"><a href="{% url 'users:info' request.user.id %}">Your Account</a></div>
 
+    <div class="topics_base"><a href="{% url 'pybasic:topics' %}">Topics</a></div>
 
-    <div class="topics_base"><a href="{% url 'pybasic:topics'%}">Topics</a></div>
 
     <div class="logout"><a href="{% url 'users:logout' %}">logout</a></div>
     {% else %}
+    <div class="topics_base"><a href="{% url 'pybasic:topics' %}">Topics</a></div>
     <div class="links"><a href="{% url 'users:register'%}">register</a></div>
     <div class="links"><a href="{% url 'users:login' %}">login</a></div>
 

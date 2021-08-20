@@ -62,7 +62,9 @@ def filter_comments_by_user_id(user_id):
     """
     Function to get filtered comments by user field.
     """
-    comments = Comment.objects.filter(user_id=user_id)
+    user = User.objects.get(id=user_id)
+    comments = user.comment_set.all()
+    return comments
 
 
 def filter_comments_by_user_topic(user_id, topic_id):
@@ -85,7 +87,17 @@ def filter_questions_user_id(user_id):
     """
     Function to get filtered questions by user field.
     """
-    questions = Questions.objects.filter(user_id=user_id)
+    user = User.objects.get(id=user_id)
+    questions = user.questions_set.all()
+    return questions
+
+
+def filter_questions_user_topic(user_id, topic_id):
+    """
+    Function to get questions asked by user in a particular topic.
+    """
+    questions = Questions.objects.filter(user_id=user_id, topic_id=topic_id)
+    return questions
 
 
 def filter_questions_by_topic_user(user_id, topic_id):
@@ -110,6 +122,3 @@ def filter_topics_by_tag(tag_id):
     """
     topics = TagTopics.objects.filter(tag_id=tag_id)
     return topics
-
-
-

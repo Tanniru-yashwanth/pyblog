@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width={device-width}, initial-scale=1.0">
-    <title>Document</title>
+    <title>TopicDetail</title>
     <style>
         .options {
             background-color: lightgray;
@@ -26,13 +26,25 @@
             height: 500px;
             padding: 20px;
             border-radius: 5px;
-            width: 90%
+            width: 90%;
+            margin-left: 65px;
         }
 
         button {
             background-color: lightpink;
             border-radius: 10px;
 
+        }
+
+        .tabs {
+            background-color: cadetblue;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            padding-left: 15px;
+            font-size: 18px;
+            padding-bottom: 2px;
+            margin-bottom: 3px;
         }
     </style>
 </head>
@@ -58,40 +70,17 @@
             {% endfor %}
         </ul>
     </div>
+    <diV class='tabs'>
+        <p><a href="{% url 'pybasic:question' topic.id %}">Ask</a></p>
+    </diV>
+    <diV class='tabs'>
+        <p><a href="{% url 'pybasic:comment' topic.id %}">Comment</a></p>
 
-    <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
-        {% csrf_token %}
-        <div class="f">{{form.as_p}}</div>
-        <button type="submit" name="comment">submit</button>
-    </form>
-    <div class="c">
-        <p>Your Comments:</p>
-        <ul>
-            {% for comment in comments %}
-            <li>{{comment}}</li>
-            {% empty %}
-            <li>There are no comments yet.</li>
-            {% endfor %}
-        </ul>
+    </diV>
+    <div class="tabs">
+        <p><a href="{% url 'pybasic:add-tag-topic' topic.id %}">Add tag</a></p>
     </div>
-
-    <p>
-    <form action="{% url 'pybasic:topic-detail' user.id topic.id %}" method="POST">
-        {% csrf_token %}
-        {{form_1.as_p}}
-        <button type="submit" name="question">submit</button>
-        </p>
-        <div class="q">
-            <p>Your Questions:</p>
-            <ul>
-                {% for question in questions %}
-                <li>{{question}}</li>
-                {% empty %}
-                <li>There are no questions yet.</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endblock content%}
+    {% endblock content%}
 </body>
 
 </html>

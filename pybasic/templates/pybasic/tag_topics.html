@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width={device-width}, initial-scale=1.0">
-    <title>Topics</title>
+    <title>TagTopics</title>
     <style>
         .topics {
             background-color: rgb(180, 161, 161);
@@ -23,16 +23,14 @@
     {% extends 'pybasic/base.html' %}
     {% block content %}
     <ul>
-        {% for topic in topics_tag %}
-
+        {% for topic in tag_topics_ %}
         <li>
-            <div class="topics"><a href="{% url 'pybasic:topic-detail' user.id topic.id %}">{{topic}}</a></div>
+            <div class="topics"><a href="{% url 'pybasic:topic-detail' topic.topic_id %}">{{topic}}</a></div>
         </li>
-
-        {% empty %}
-        <li>There are no topics matching this tag.</li>
         {% endfor %}
+
     </ul>
+
     {% endblock content%}
 </body>
 

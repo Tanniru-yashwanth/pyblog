@@ -4,10 +4,9 @@ Functional tests are used to test the application from the point of user.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
-import time
 
 
-class HomePageTest(unittest.TestCase):
+class PyBlogTest(unittest.TestCase):
     """
     Class to write the unittests for the every particular function.
     """
@@ -31,7 +30,6 @@ class HomePageTest(unittest.TestCase):
         """
         TearDown method to shut the browser after completing the testing.
         """
-        time.sleep(5)
         self.browser.quit()
 
     def test_getting_index_page(self):
@@ -40,19 +38,63 @@ class HomePageTest(unittest.TestCase):
          """
         self.browser.get("http://localhost:8000")
         # to check the pyblog in title
-        self.assertIn("pyblog", self.browser.title)
+        self.assertEqual("pyblog", self.browser.title)
 
     def test_topics_page(self):
         """
         To check whether the topics page is working.
         """
-        self.browser.get("http://localhost:8000/topics/")
+        self.browser.get("http://localhost:8000/topics/1")
+        self.assertEqual('Topics', self.browser.title)
 
     def test_topic_detail_page(self):
         """
         To check whether the topic detail page is working.
         """
         self.browser.get('http://localhost:8000/topics/1/1/')
+        self.assertEqual('TopicDetail', self.browser.title)
+
+    def test_comment_page(self):
+        """
+        To check whether the comment page is working or not.
+        """
+        self.browser.get('http://localhost:8000/topics/1/1/comment')
+        self.assertEqual('Comment', self.browser.title)
+
+    def test_ask_page(self):
+        """
+        To check whether the ask page is working or not.
+        """
+        self.browser.get('http://localhost:8000/topics/1/1/ask')
+        self.assertEqual('Ask', self.browser.title)
+
+    def test_add_tag_page(self):
+        """
+        To check whether the adding tag  page is working or not.
+        """
+        self.browser.get('http://localhost:8000/topics/1/add_tag')
+        self.assertEqual('Add Tags', self.browser.title)
+
+    def test_add_tag_topic_page(self):
+        """
+        To check whether the adding tag to topic page is working or not.
+        """
+        self.browser.get('http://localhost:8000/topics/1/1/add_tag_topic')
+        self.assertEqual('TagTopics', self.browser.title)
+
+    def test_info_page(self):
+        """
+        To check whether the your account is working as expected.
+        """
+        self.browser.get('http://127.0.0.1:8000/users/info/1')
+        self.assertEqual('Your Account', self.browser.title)
+
+    def test_logout(self):
+        """
+        To check whether the logout page is working.
+        """
+        self.browser.get('http://127.0.0.1:8000/users/logout/')
+        self.assertEqual('Logged out', self.browser.title)
 
 
 if __name__ == "__main__":

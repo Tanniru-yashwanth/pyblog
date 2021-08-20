@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment, Questions
+from .models import Comment, Questions, Tags, TagTopics
 
 
 class CommentFormDisplay(forms.ModelForm):
@@ -10,7 +10,7 @@ class CommentFormDisplay(forms.ModelForm):
 
     class Meta:
         model = Comment
-        label = {"comment": ""}
+        label = {"comment": "comment"}
         fields = ["comment", 'profession', 'json_field']
 
 
@@ -21,5 +21,25 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = Questions
-        label = {"ask": ""}
+        label = {"question": "question"}
         fields = ["question", 'profession', 'json_field']
+
+
+class TagForm(forms.ModelForm):
+    """
+    Class to create tag form to provide the facility of adding tags and removing.
+    """
+
+    class Meta:
+        model = Tags
+        label = {"tag": "tags"}
+        fields = ['tag']
+
+
+class TagsTopicsForm(forms.ModelForm):
+    """
+    Class to create tags_topics form to provide the facility of adding tags to the topic.
+    """
+    class Meta:
+        model = TagTopics
+        fields = ['tag']
