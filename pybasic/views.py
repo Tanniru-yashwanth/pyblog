@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .service_layer import (
     get_all_topics,
     topic_in_detail,
-    get_user_in_detail,
     filter_entries_by_topic,
     filter_comments_by_user_topic,
     filter_questions_by_topic_user,
@@ -48,7 +47,7 @@ def topic_detail(request, topic_id):
     return render(request, "pybasic/topic_detail.html", context)
 
 
-@login_required()
+@login_required(login_url='/users/login')
 def comment(request, topic_id):
     topic = topic_in_detail(topic_id)
     if request.method != "POST":
@@ -68,7 +67,7 @@ def comment(request, topic_id):
     return render(request, "pybasic/comment.html", context)
 
 
-@login_required()
+@login_required(login_url='/users/login')
 def question(request, topic_id):
     topic = topic_in_detail(topic_id)
     if request.method != "POST":
@@ -91,7 +90,7 @@ def question(request, topic_id):
     return render(request, "pybasic/question.html", context)
 
 
-@login_required()
+@login_required(login_url='/users/login')
 def tag(request):
     if request.method != "POST":
         tag_form = TagForm()
@@ -109,7 +108,7 @@ def tag(request):
     return render(request, "pybasic/tag.html", context)
 
 
-@login_required()
+@login_required(login_url='/users/login')
 def add_tag_topic(request, topic_id):
     topic = topic_in_detail(topic_id)
     if request.method != "POST":
@@ -123,10 +122,9 @@ def add_tag_topic(request, topic_id):
             instance.save()
             return redirect("pybasic:topic-detail", topic.id)
     context = {"form": form, "topic": topic}
-    return render(request, "pybasic/tags_topics.html", context)
+    return render(request, "pybasic/tag_topics.html", context)
 
 
-@login_required()
 def tag_topics(request, tag_id):
     tag_topics_ = filter_topics_by_tag(tag_id=tag_id)
     context = {"tag_topics_": tag_topics_}
