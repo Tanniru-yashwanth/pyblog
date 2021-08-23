@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pyblog.urls'
-# LOGIN_URL = reverse('users:login')
+
 
 TEMPLATES = [
     {
